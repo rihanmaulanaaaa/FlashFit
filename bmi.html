@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashFit - Jangan Mager!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #06030d;
+            color: #cbd5e1;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 40%);
+        }
+        .font-tech { font-family: 'Rajdhani', sans-serif; }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(20, 13, 36, 0.7) 0%, rgba(12, 7, 22, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-card:hover { border-color: rgba(139, 92, 246, 0.35); }
+        .glass-input {
+            background: rgba(18, 10, 32, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-input:focus { border-color: #a855f7; box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); }
+        .btn-neon {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+            transition: all 0.25s ease;
+        }
+        .btn-neon:hover { box-shadow: 0 0 28px rgba(139, 92, 246, 0.6); transform: translateY(-1px); }
+        .nav-item { transition: all 0.2s ease; border: 1px solid transparent; }
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-left-color: #a855f7;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .nav-item:hover:not(.active) { background: rgba(255, 255, 255, 0.03); color: #f1f5f9; }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%3aa855f7' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.2em 1.2em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #06030d; }
+        ::-webkit-scrollbar-thumb { background: #271542; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- SIDEBAR NAVIGASI -->
+    <aside class="w-full md:w-64 bg-[#090514]/90 backdrop-blur-xl border-r border-purple-900/20 p-5 flex flex-col justify-between shrink-0 min-h-screen">
+        <div class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-500/40 flex items-center justify-center text-purple-400 text-xl font-bold shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                        ⚡
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-extrabold text-white tracking-wider font-tech">Flash<span class="text-purple-400">Fit</span></h1>
+                        <p class="text-[9px] text-purple-300/60 font-tech tracking-widest uppercase">Activity Tracker</p>
+                    </div>
+                </div>
+                <button class="md:hidden text-slate-400 hover:text-white" onclick="toggleMobileMenu()">☰</button>
+            </div>
+
+            <!-- MENU NAVIGASI -->
+            <nav id="nav-menu" class="space-y-2 hidden md:block">
+                <a href="index.html" class="nav-item text-slate-400 flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-tech tracking-wider uppercase">
+                    <span class="text-slate-500">📊</span> Daily Metrics Dashboard
+                </a>
+                <a href="tracker.html" class="nav-item text-slate-400 flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-tech tracking-wider uppercase">
+                    <span class="text-slate-500">📝</span> Activity Log Tracker
+                </a>
+                <a href="bmi.html" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-tech tracking-wider uppercase">
+                    <span class="text-purple-400">🧮</span> BMI & BMR Calculator
+                </a>
+                <a href="analytics.html" class="nav-item text-slate-400 flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-tech tracking-wider uppercase">
+                    <span class="text-slate-500">📈</span> Analytics Page
+                </a>
+                <a href="achievements.html" class="nav-item text-slate-400 flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-tech tracking-wider uppercase">
+                    <span class="text-slate-500">🏆</span> Achievements
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 p-5 md:p-8 space-y-6 overflow-y-auto">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+            <div>
+                <h1 class="text-3xl font-extrabold text-white font-tech tracking-wide">BMI & BMR Calculator</h1>
+                <p class="text-xs text-purple-400/80">Hitung indeks massa tubuh dan kebutuhan kalori basal secara presisi</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- FORM INPUT DATA -->
+            <div class="lg:col-span-5 space-y-4">
+                <div class="glass-card rounded-2xl p-5 space-y-4">
+                    <h2 class="text-xs font-extrabold uppercase font-tech tracking-widest text-slate-300 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Input Biometrik Body
+                    </h2>
+
+                    <form id="bmi-form" onsubmit="calculateMetrics(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-[11px] font-tech font-bold uppercase tracking-wider text-slate-400 mb-1.5">Jenis Kelamin</label>
+                            <select id="gender" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-white font-medium focus:outline-none">
+                                <option value="male">Laki-laki</option>
+                                <option value="female">Perempuan</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-tech font-bold uppercase tracking-wider text-slate-400 mb-1.5">Usia (Tahun)</label>
+                                <input type="number" id="age" placeholder="20" required class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-600 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-tech font-bold uppercase tracking-wider text-slate-400 mb-1.5">Tinggi Badan (cm)</label>
+                                <input type="number" id="height" placeholder="170" required class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-600 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-tech font-bold uppercase tracking-wider text-slate-400 mb-1.5">Berat Badan (kg)</label>
+                            <input type="number" id="weight" step="0.1" placeholder="65" required class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-600 focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-tech font-bold uppercase tracking-wider text-slate-400 mb-1.5">Tingkat Aktivitas Harian</label>
+                            <select id="activity-level" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-white font-medium focus:outline-none">
+                                <option value="1.2">Sangat Jarang Olahraga</option>
+                                <option value="1.375">Ringan (1-3 hari/minggu)</option>
+                                <option value="1.55" selected>Sedang (3-5 hari/minggu)</option>
+                                <option value="1.725">Berat (6-7 hari/minggu)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full btn-neon text-white font-tech font-extrabold tracking-wider text-sm py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98]">
+                            HITUNG 
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- HASIL KALKULASI -->
+            <div class="lg:col-span-7 space-y-4">
+                <!-- BMI RESULT CARD -->
+                <div class="glass-card rounded-2xl p-5 space-y-3">
+                    <span class="text-[10px] font-tech font-bold tracking-widest text-slate-400 uppercase block">HASIL BODY MASS INDEX (BMI)</span>
+                    <div class="flex items-baseline justify-between">
+                        <div id="bmi-score" class="text-4xl font-extrabold font-tech text-cyan-400">--.-</div>
+                        <div id="bmi-badge" class="px-3 py-1 rounded-full text-xs font-tech font-bold bg-slate-800 text-slate-400 border border-slate-700">
+                            BELUM DIHITUNG
+                        </div>
+                    </div>
+                    <p id="bmi-desc" class="text-xs text-slate-400">Masukkan data fisik kamu untuk melihat kategori status berat badan.</p>
+                </div>
+
+                <!-- BMR & TDEE CARDS -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-5 space-y-2">
+                        <span class="text-[10px] font-tech font-bold tracking-widest text-slate-400 uppercase block">BMR (KALORI BASAL)</span>
+                        <div id="bmr-score" class="text-2xl font-extrabold font-tech text-purple-400">---- kcal</div>
+                        <p class="text-[10px] text-slate-500 font-tech">Energi minimum tubuh saat istirahat total.</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 space-y-2">
+                        <span class="text-[10px] font-tech font-bold tracking-widest text-slate-400 uppercase block">TDEE (KEBUTUHAN HARIAN)</span>
+                        <div id="tdee-score" class="text-2xl font-extrabold font-tech text-emerald-400">---- kcal</div>
+                        <p class="text-[10px] text-slate-500 font-tech">Total kalori harian berdasarkan aktivitas.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function calculateMetrics(e) {
+            e.preventDefault();
+
+            const gender = document.getElementById('gender').value;
+            const age = parseInt(document.getElementById('age').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const activity = parseFloat(document.getElementById('activity-level').value);
+
+            if (!age || !height || !weight) return;
+
+            // Hitung BMI: weight (kg) / (height (m))^2
+            const heightM = height / 100;
+            const bmi = (weight / (heightM * heightM)).toFixed(1);
+
+            // Hitung BMR (Mifflin-St Jeor Equation)
+            let bmr = (10 * weight) + (6.25 * height) - (5 * age);
+            bmr = (gender === 'male') ? bmr + 5 : bmr - 161;
+            
+            const tdee = Math.round(bmr * activity);
+
+            // Tampilkan Skor
+            document.getElementById('bmi-score').innerText = bmi;
+            document.getElementById('bmr-score').innerText = `${Math.round(bmr)} kcal`;
+            document.getElementById('tdee-score').innerText = `${tdee} kcal`;
+
+            // Kategori BMI & Styling Badge
+            const badge = document.getElementById('bmi-badge');
+            const desc = document.getElementById('bmi-desc');
+
+            if (bmi < 18.5) {
+                badge.className = "px-3 py-1 rounded-full text-xs font-tech font-bold bg-amber-950/60 text-amber-400 border border-amber-500/40";
+                badge.innerText = "UNDERWEIGHT";
+                desc.innerText = "Berat badan kurang dari rata-rata. Pertimbangkan untuk meningkatkan asupan nutrisi seimbang.";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                badge.className = "px-3 py-1 rounded-full text-xs font-tech font-bold bg-emerald-950/60 text-emerald-400 border border-emerald-500/40";
+                badge.innerText = "NORMAL / IDEAL";
+                desc.innerText = "Berat badan ideal! Pertahankan pola makan dan olahraga teratur kamu.";
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                badge.className = "px-3 py-1 rounded-full text-xs font-tech font-bold bg-orange-950/60 text-orange-400 border border-orange-500/40";
+                badge.innerText = "OVERWEIGHT";
+                desc.innerText = "Berat badan di atas rata-rata. Kamu bisa meningkatkan intensitas aktivitas fisik.";
+            } else {
+                badge.className = "px-3 py-1 rounded-full text-xs font-tech font-bold bg-rose-950/60 text-rose-400 border border-rose-500/40";
+                badge.innerText = "OBESITAS";
+                desc.innerText = "Kategori obesitas. Disarankan untuk konsisten mengatur pola makan dan aktivitas harian.";
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('nav-menu').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
